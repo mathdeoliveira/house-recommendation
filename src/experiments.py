@@ -1,10 +1,13 @@
 import pandas as pd 
+import numpy as np
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.linear_model import LogisticRegression
 from catboost import CatBoostClassifier
 from lightgbm import LGBMClassifier
-
+from imblearn.pipeline import Pipeline
+from imblearn.over_sampling import SMOTE
+from sklearn.model_selection import cross_val_score, RepeatedStratifiedKFold
 
 from preprocessing import PreProcessing
 from data_source import DataSource
@@ -35,7 +38,13 @@ class Experiments():
             print('Treinando o modelo', alg)
             test = self.tested_algorithms[alg]
             print(test)
-            test.fit(X_train, y_train)
+            steps = [('over', SMOTE()), ('model', test)]
+            pipeline = Pipeline(steps=steps)
+            pipeline.fit(X_train, y_train)
+            print('Cross val score using RepeatedStratifiedKFold')
+            cv = RepeatedStratifiedKFold(n_splits=10, n_repeats=5, random_state=42)
+            scores = cross_val_score(pipeline, X_train, y_train, scoring='roc_auc', cv=cv, n_jobs=-1)
+            print(np.mean(scores))
             if self.models is None:
                 self.models = {alg : test}
             else:
@@ -65,7 +74,7 @@ class Experiments():
         print('Running metrics')
         for model in models.keys():
             print(model)
-            y_pred = models[model].predict_proba(X_test)[:,1]
+            y_pred = models[model].predict(X_test)
             print(met.calculate_classification(y_test, pd.Series(y_pred)))
             metrics = met.calculate_classification(y_test, pd.Series(y_pred))
             pd.DataFrame.from_dict(metrics, orient='index').to_csv('../output/'+model+'.csv')

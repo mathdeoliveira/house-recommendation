@@ -25,7 +25,7 @@ class ModelInference():
         X_test = self.modelo['preprocessing'].preprocess(test_df, train=False)
         print(X_test.isna().sum())
         print('Predicting')
-        y_pred = self.modelo['model'].predict_proba(X_test)[:,1]
+        y_pred = self.modelo['model'].predict(X_test)
         print('Evaluating model in test data')
         y_true = test_df['y']
         print(Metrics().calculate_classification(y_true, y_pred))
