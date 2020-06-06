@@ -6,4 +6,4 @@ __pycache__
 *.xlsx
 *.csv
 *.pkl
-/analysis/catboost_info
+/analysis/catboost_info/
