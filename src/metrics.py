@@ -1,5 +1,5 @@
 import pandas as pd 
-from sklearn.metrics import roc_auc_score, average_precision_score, confusion_matrix
+from sklearn.metrics import roc_auc_score, average_precision_score
 
 class Metrics():
     def __init__(self):
@@ -16,8 +16,7 @@ class Metrics():
 
         roc = roc_auc_score(y_true, y_pred)
         aps = average_precision_score(y_true, y_pred)
-        cm = confusion_matrix(y_true, y_pred)
 
         return {'roc_auc_score': roc,
-                'average_precision_score': aps,
-                'confusion_matrix' : cm}
+                'average_precision_score': aps
+                }

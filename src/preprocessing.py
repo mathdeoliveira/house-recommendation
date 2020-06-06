@@ -20,7 +20,6 @@ class PreProcessing():
                train: boolean
         :return processed pandas dataframe and pd.Series with target
         '''
-
         print('Creating dataframe for data manipulation')
         cons = pd.DataFrame({'column': df.columns,
                              'missing_perc': (df.isna().sum() / df.shape[0]) * 100,
@@ -61,5 +60,3 @@ class PreProcessing():
             for column in df[self.categoric_features + self.numeric_features].columns:
                 df[column] = df[column].fillna(df[column].mean())
             return df[self.categoric_features + self.numeric_features]
-
-        return df, y

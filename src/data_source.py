@@ -31,5 +31,6 @@ class DataSource():
             return df
 
         df = pd.read_csv(self.test_path, delimiter=';')
+        y = pd.read_csv(self.test_path, delimiter=';')
 
-        return df
+        return df, y

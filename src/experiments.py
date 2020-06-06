@@ -40,7 +40,7 @@ class Experiments():
                 self.models = {alg : test}
             else:
                 self.models.update({alg : test})
-            return self.models
+        return self.models
 
     def run_experiment(self):
         '''
@@ -54,7 +54,6 @@ class Experiments():
         met = Metrics()
         print('Reading Data')
         train_df = ds.read_data(train=True)
-
         test_df, y_test = ds.read_data(train=False)
         y_test = y_test['y']
         print('Preprocessing train data')
@@ -66,7 +65,7 @@ class Experiments():
         print('Running metrics')
         for model in models.keys():
             print(model)
-            y_pred = models[model].predict(X_test)
+            y_pred = models[model].predict_proba(X_test)[:,1]
             print(met.calculate_classification(y_test, pd.Series(y_pred)))
             metrics = met.calculate_classification(y_test, pd.Series(y_pred))
             pd.DataFrame.from_dict(metrics, orient='index').to_csv('../output/'+model+'.csv')

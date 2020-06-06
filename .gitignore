@@ -5,3 +5,4 @@ __pycache__
 *.sqlite3
 *.xlsx
 *.csv
+*.pkl
