@@ -16,4 +16,4 @@ O projeto foi desenvolvido para solucionar o problema de encontrar imóveis de a
 Para ver o funcionamento do processo do aplicativo desenvolvido com OutSystems, dê uma olhada na imagem abaixo, onde é um exemplo de como foi para eu validar cada imóveis.
 <img src="https://i.imgur.com/LvdmRkV.gif" width="80%"></p>
 
-Para ver o funcionamento do processo que desenvolvi para machine learning, entre no notebook responsável por leva você [clicando aqui.](https://github.com/mathdeoliveira/house-recommendation/blob/master/analysis/entire_process.ipynb)
+Para ver o funcionamento do processo que desenvolvi para machine learning, entre no notebook responsável por levar você a todo processo, [clicando aqui.](https://github.com/mathdeoliveira/house-recommendation/blob/master/analysis/entire_process.ipynb)
