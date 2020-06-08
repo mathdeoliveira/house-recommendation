@@ -12,6 +12,12 @@ class DataSource():
         self.test_path = os.path.join(self.data_dir, 'test.csv')
 
     def generate_test_data(self):
+        '''
+        Read raw data and split into train and test file
+
+        params: none
+        returns: files in data dir
+        '''
         df = pd.read_excel(self.data_path)
         train, test = train_test_split(df, test_size=0.33, random_state=42, shuffle=True)
         train.to_csv(self.train_path, sep=';', index=False)
@@ -31,6 +37,5 @@ class DataSource():
             return df
 
         df = pd.read_csv(self.test_path, delimiter=';')
-        y = pd.read_csv(self.test_path, delimiter=';')
 
-        return df, y
+        return df

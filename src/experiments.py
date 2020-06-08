@@ -5,6 +5,7 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.linear_model import LogisticRegression
 from catboost import CatBoostClassifier
 from lightgbm import LGBMClassifier
+from xgboost import XGBClassifier
 from imblearn.pipeline import Pipeline
 from imblearn.over_sampling import SMOTE
 from sklearn.model_selection import cross_val_score, RepeatedStratifiedKFold
@@ -19,7 +20,8 @@ class Experiments():
                                   'random_forest' : RandomForestClassifier(),
                                   'logistic_regression' : LogisticRegression(),
                                   'catboost' : CatBoostClassifier(),
-                                  'lgbm' : LGBMClassifier()
+                                  'lgbm' : LGBMClassifier(),
+                                  'xgboost': XGBClassifier()
                                  }
 
         self.models = None
@@ -63,8 +65,8 @@ class Experiments():
         met = Metrics()
         print('Reading Data')
         train_df = ds.read_data(train=True)
-        test_df, y_test = ds.read_data(train=False)
-        y_test = y_test['y']
+        test_df = ds.read_data(train=False)
+        y_test = test_df['y']
         print('Preprocessing train data')
         X_train, y_train = pre.preprocess(train_df, train=True)
         print('Preprocessing test data')
@@ -75,7 +77,7 @@ class Experiments():
         for model in models.keys():
             print(model)
             y_pred = models[model].predict(X_test)
-            print(met.calculate_classification(y_test, pd.Series(y_pred)))
-            metrics = met.calculate_classification(y_test, pd.Series(y_pred))
+            print(met.calculate_classification(model, y_test, pd.Series(y_pred)))
+            metrics = met.calculate_classification(model, y_test, pd.Series(y_pred))
             pd.DataFrame.from_dict(metrics, orient='index').to_csv('../output/'+model+'.csv')
         return metrics

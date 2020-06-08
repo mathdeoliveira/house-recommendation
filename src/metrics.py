@@ -5,7 +5,7 @@ class Metrics():
     def __init__(self):
         pass
 
-    def calculate_classification(self, y_true, y_pred):
+    def calculate_classification(self, model, y_true, y_pred):
         '''
         Calculate the metrics from a regression problem
 
@@ -13,10 +13,11 @@ class Metrics():
                 y_pred: numpy.ndarray or pandas.series
         returns: dict with metrics
         '''
-
+        model_name = model
         roc = roc_auc_score(y_true, y_pred)
         aps = average_precision_score(y_true, y_pred)
 
-        return {'roc_auc_score': roc,
+        return {'model_name': model_name,
+                'roc_auc_score': roc,
                 'average_precision_score': aps
                 }

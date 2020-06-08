@@ -20,7 +20,7 @@ class ModelInference():
         print('Loading model')
         self.modelo = load('../output/modelo.pkl')
         print('Loading data')
-        test_df, train_df = DataSource().read_data(train=False)
+        test_df = DataSource().read_data(train=False)
         print('Preprocessing Data')
         X_test = self.modelo['preprocessing'].preprocess(test_df, train=False)
         print(X_test.isna().sum())
@@ -28,7 +28,8 @@ class ModelInference():
         y_pred = self.modelo['model'].predict(X_test)
         print('Evaluating model in test data')
         y_true = test_df['y']
-        print(Metrics().calculate_classification(y_true, y_pred))
+        model_name = 'CatBoost'
+        print(Metrics().calculate_classification(model_name, y_true, y_pred))
         print('Saving file')
         pd.DataFrame(y_pred).to_csv('../output/predito.csv')
         return y_pred

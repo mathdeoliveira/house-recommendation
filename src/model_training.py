@@ -24,7 +24,7 @@ class ModelTraining():
         steps = [('over', SMOTE()), ('model', CatBoostClassifier())]
         pipeline = Pipeline(steps=steps)
         pipeline.fit(X_train, y_train)
-        modelo = pipeline
+        modelo = pipeline['model']
         model = {
             'model' : modelo,
             'preprocessing': pre,
