@@ -20,6 +20,9 @@ Para ver o funcionamento do processo do aplicativo desenvolvido com OutSystems, 
 
 Para ver o funcionamento do processo que desenvolvi para machine learning, entre no notebook responsável por levar você a todo processo, [clicando aqui.](https://github.com/mathdeoliveira/house-recommendation/blob/master/analysis/entire_process.ipynb)
 
+A imagem abaixo ilustra o funcionamento do webapp onde é possível consumir o modelo de machine learning criado.
+<img src="https://i.imgur.com/kFZcL0C.png" width="60%">
+
 ## Deploy
 
 Para o deploy foi usado o Streamlit desenvolvido em Python onde é possível criar um webapp para mostrar o funcionamento do modelo de machine learning, a imagem abaixo é mostrado a estrutura do projeto.
