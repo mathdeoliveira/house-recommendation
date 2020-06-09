@@ -24,6 +24,6 @@ Para ver o funcionamento do processo que desenvolvi para machine learning, entre
 
 Para o deploy foi usado o Streamlit desenvolvido em Python onde é possível criar um webapp para mostrar o funcionamento do modelo de machine learning, a imagem abaixo é mostrado a estrutura do projeto.
 
-<img src="https://i.imgur.com/UXB1yw8.png>
+<img src="https://i.imgur.com/UXB1yw8.png">
           
 Para acessar o aplicativo, [clique aqui.](http://18.228.119.35:8501)
